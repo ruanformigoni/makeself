@@ -568,30 +568,6 @@ phase2)
     ;;
 esac
 
-if test x"\$nox11" = xn; then
-    if test -t 1; then  # Do we have a terminal on stdout?
-	:
-    else
-        if test x"\$DISPLAY" != x -a x"\$xterm_loop" = x; then  # No, but do we have X?
-            if xset q > /dev/null 2>&1; then # Check for valid DISPLAY variable
-                GUESS_XTERMS="xterm gnome-terminal rxvt dtterm eterm Eterm xfce4-terminal lxterminal kvt konsole aterm terminology"
-                for a in \$GUESS_XTERMS; do
-                    if type \$a >/dev/null 2>&1; then
-                        XTERM=\$a
-                        break
-                    fi
-                done
-                chmod a+x \$0 || echo Please add execution rights on \$0 >&2
-                if test \`echo "\$0" | cut -c1\` = "/"; then # Spawn a terminal!
-                    exec \$XTERM -e "\$0 --xwin \$initargs"
-                else
-                    exec \$XTERM -e "./\$0 --xwin \$initargs"
-                fi
-            fi
-        fi
-    fi
-fi
-
 if test x"\$targetdir" = x.; then
     tmpdir="."
 else
