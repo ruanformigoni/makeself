@@ -357,7 +357,7 @@ sig_key=
 
 initargs="\$@"
 
-while true
+while [ -n "\$MAKESELF_CLI_LOOP" ]
 do
     case "\$1" in
     -h | --help)
